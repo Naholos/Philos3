@@ -12,6 +12,11 @@
 
 #include "./include/philo.h"
 
+/*void	leaks(void)
+{
+	system("leaks -q philo");
+}*/
+
 static void	*actions(void *philosophers)
 {
 	t_philo	*phi;
@@ -19,16 +24,18 @@ static void	*actions(void *philosophers)
 	phi = (t_philo *) philosophers;
 	while (phi->com->end == 0)
 	{
-		if (phi->id > 1)
-			usleep(1);
-		if (phi->times_must_eat == 0)
-			return (NULL);
+		if (phi->id % 2 == 0)
+			usleep(500);
 		forking_a(phi);
 		forking_b(phi);
 		pst(1, *phi);
-		phi->last_meal = get_time_ms();
+		phi->last_meal = time_stm();
 		if (phi->times_must_eat > -1)
-			inc_repeat(phi);
+		{
+			phi->com->repeat++;
+			if (phi->com->repeat == phi->com->diners * phi->com->rations)
+				phi->com->end = phi->id;
+		}
 		ft_sleep(phi->com->time_to_eat);
 		pthread_mutex_unlock(&phi->m_fork);
 		pthread_mutex_unlock(&(phi->prev_phi->m_fork));
@@ -75,10 +82,10 @@ static void	manage_threads(t_input *input, t_philo *phi)
 		i = -1;
 		pthread_mutex_lock(&input->m_death);
 		if (input->repeat == input->rations * input->diners
-			|| get_time_ms() - phi[++i].last_meal >= input->time_to_die)
+			|| time_stm() - phi[++i].last_meal > input->time_to_die)
 		{
 			input->end = phi[i].id;
-			if (get_time_ms() - phi[i].last_meal >= input->time_to_die)
+			if (time_stm() - phi[i].last_meal > input->time_to_die)
 				pst(4, phi[i]);
 			i = -1;
 			while (++i < phi->com->diners && input->end == 0)
@@ -96,6 +103,7 @@ int	main(int argc, char *argv[])
 	t_input		*input;
 	t_philo		*phi;
 
+//	atexit(leaks);
 	input = (t_input *)(malloc(sizeof(t_input)));
 	if (input == NULL || parse_input(argc, argv, input) || input->diners == 0)
 		return (clean_input(input));

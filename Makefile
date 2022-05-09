@@ -11,7 +11,7 @@
 # **************************************************************************** #
 
 # Compiler and compilation flags
-CC          = gcc
+CC          = gcc 
 CFLAGS	    = -Wall -Wextra -Werror -pthread
 
 # Directories
@@ -29,7 +29,7 @@ OBJS        = $(SRCS:.c=.o)
 all :       $(NAME)
 
 $(NAME):    $(OBJS)
-			$(CC) $(CFLAGS) $(OBJS) -IINC_DIR -o $(NAME)
+		$(CC) $(CFLAGS) $(OBJS) -IINC_DIR -o $(NAME)
 
 clean :
 		    rm -f $(OBJS)

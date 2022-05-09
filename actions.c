@@ -29,11 +29,3 @@ void	forking_b(t_philo *phi)
 		pthread_mutex_lock(&phi->m_fork);
 	pst(0, *phi);
 }
-
-void	inc_repeat(t_philo *phi)
-{
-	phi->times_must_eat--;
-	phi->com->repeat++;
-	if (phi->com->repeat == phi->com->diners * phi->com->rations)
-		phi->com->end = phi->id;
-}

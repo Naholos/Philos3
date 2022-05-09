@@ -14,7 +14,7 @@
 
 int	clean_input(t_input *input)
 {
-	if (input->diners == 0)
+	if (input != NULL)
 	{
 		free (input);
 		return (0);
@@ -30,7 +30,10 @@ int	free_all(t_philo *phi, int *forks, t_input *input)
 	{
 		i = -1;
 		while (++i < phi->com->diners)
+		{
 			pthread_mutex_destroy(&phi->m_fork);
+			pthread_mutex_destroy(&(phi->prev_phi->m_fork));
+		}
 		pthread_mutex_destroy(&phi->com->m_print);
 		pthread_mutex_destroy(&phi->com->m_print);
 	}

@@ -35,24 +35,24 @@ void	ft_sleep(long ms)
 
 	start = get_time_ms();
 	while ((get_time_ms() - start) < ms)
-		usleep(50);
+		usleep(500);
 }
 
 void	pst(int st, t_philo phi)
 {
-	pthread_mutex_lock(&phi.com->m_print);
-	if (time_stm() - phi.last_meal >= phi.com->time_to_die)
-		st = 4;
-	if (st == 0)
-		printf("\x1b[36m""%lu ms, %d has taken a fork.\n", time_stm(), phi.id);
-	else if (st == 1)
-		printf("\x1b[32m""%lu ms, %d is eating.\n", time_stm(), phi.id);
-	else if (st == 2 && phi.com->repeat != phi.com->diners * phi.com->rations)
-		printf("\x1b[33m""%lu ms, %d is sleeping.\n", time_stm(), phi.id);
-	else if (st == 3 && phi.com->repeat != phi.com->diners * phi.com->rations)
-		printf("\x1b[34m""%lu ms, %d is thinking.\n", time_stm(), phi.id);
-	else if (st == 4 && phi.com->repeat != phi.com->diners * phi.com->rations)
-		printf("\x1b[31m""%lu ms, %d has died.\n", time_stm(), phi.id);
-	if (st != 4)
-		pthread_mutex_unlock(&phi.com->m_print);
+	pthread_mutex_unlock(&phi.com->m_print);
+	if (phi.com->repeat != phi.com->rations * phi.com->diners)
+	{
+		if (st == 0 && phi.com->end == 0)
+			printf(SKY FORK, time_stm(), phi.id);
+		else if (st == 1 && phi.com->end == 0)
+			printf(GREEN EAT, time_stm(), phi.id);
+		else if (st == 2 && phi.com->end == 0)
+			printf(YELLOW SLEEP, time_stm(), phi.id);
+		else if (st == 3 && phi.com->end == 0)
+			printf(BLUE THINK, time_stm(), phi.id);
+		else if (st == 4)
+			printf(RED DIE, time_stm(), phi.id);
+	}
+	pthread_mutex_unlock(&phi.com->m_print);
 }

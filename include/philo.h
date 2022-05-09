@@ -19,6 +19,18 @@
 # include <string.h>
 # include <unistd.h>
 
+# define SKY "\x1b[36m"
+# define GREEN "\x1b[32m"
+# define YELLOW "\x1b[33m"
+# define BLUE "\x1b[34m"
+# define RED "\x1b[31m"
+
+# define FORK "%lu ms, %d has taken a fork.\n"
+# define EAT "%lu ms, %d is eating.\n"
+# define SLEEP "%lu ms, %d is sleeping.\n"
+# define THINK "%lu ms, %d is thinking.\n"
+# define DIE "%lu ms, %d has died.\n"
+
 typedef struct s_input
 {
 	int				end;
@@ -47,7 +59,6 @@ typedef struct s_philo
 }	t_philo;
 
 int		clean_input(t_input *input);
-void	inc_repeat(t_philo *phi);
 void	forking_a(t_philo *phi);
 void	forking_b(t_philo *phi);
 int		free_all(t_philo *phi, int *forks, t_input *input);
