@@ -1,7 +1,6 @@
 # aoteo-be@student.42madrid.com
 
 # Estos tests son solo para versión obligatoria de philosophers.
-# Las pruebas marcadas con ===> se mencionan explícitamente en la correción.
 
 clear
 echo "*********************************************************************"
@@ -121,12 +120,12 @@ echo "*****************************************************"
 
 echo "$(tput setaf 5)\n1) Prueba con 0 filósofos: ./philo 0 800 200 200"
 echo "$(tput setaf 8)\c"
-#./philo 0 800 200 200
+./philo 0 800 200 200
 read foo
 
-echo "$(tput setaf 5)\n2) Prueba con 0 filósofos: ./philo 0 800 200 200"
+echo "$(tput setaf 5)\n2) Prueba con 0 filósofos y 2 raciones: ./philo 0 800 200 200 2"
 echo "$(tput setaf 8)\c"
-#./philo 0 800 200 200
+./philo 0 800 200 200 2
 read foo
 
 echo "$(tput setaf 5)\n3) CASO PROPUESTO EN LA CORRECCIÓN: Prueba con 1 filósofo y raciones sin límite: ./philo 1 800 200 200"
@@ -155,51 +154,57 @@ read foo
 ./philo 2 130 60 60 2
 read foo
 
-echo "$(tput setaf 5)\n3) Prueba con 2 filósofos, 2 raciones (2). Debe morir uno: ./philo 2 120 60 60 2"
-echo "$(tput setaf 8)\c"
-read foo
-./philo 2 120 60 60 2
-read foo
-
-echo "$(tput setaf 5)\n4) Prueba con 2 filósofos, 2 raciones (3), deben sobrevivir: ./philo 2 410 200 200 2"
+echo "$(tput setaf 5)\n3) Prueba con 2 filósofos, 2 raciones (2). Deben sobrevivir: ./philo 2 410 200 200 2"
 echo "$(tput setaf 8)\c"
 read foo
 ./philo 2 410 200 200 2
 read foo
 
-echo "$(tput setaf 5)\n5) Prueba con 2 filósofos, raciones sin límite. Debe morir uno: ./philo 2 120 60 60 "
+echo "$(tput setaf 5)\n4) Prueba con 2 filósofos, 2 raciones. Debe morir uno: ./philo 2 110 60 60 2"
 echo "$(tput setaf 8)\c"
 read foo
-./philo 2 120 60 60
+./philo 2 110 60 60 2
 read foo
 
-echo "$(tput setaf 5)\n6) Prueba con 3 filósofos, sin límite de raciones. Debe morir uno: ./philo 3 130 60 60"
+echo "$(tput setaf 5)\n5) Prueba con 2 filósofos, sin límite de raciones. Debe morir uno: ./philo 2 110 60 60 "
 echo "$(tput setaf 8)\c"
 read foo
-./philo 3 130 60 60
+./philo 2 110 60 60
 read foo
 
-echo "$(tput setaf 5)\n7) Prueba con 3 filósofos, sin límite de raciones (2). Debe morir uno: ./philo 3 130 100 100"
-echo "$(tput setaf 8)\c"
-read foo
-./philo 3 130 100 100
-read foo
-
-echo "$(tput setaf 5)\n8) Prueba con 3 filósofos, con 2 raciones. Debe morir uno: ./philo 3 130 60 60 2"
+echo "$(tput setaf 5)\n6) Prueba con 3 filósofos, con 2 raciones (1). Debe morir uno: ./philo 3 130 60 60 2"
 echo "$(tput setaf 8)\c"
 read foo
 ./philo 3 130 60 60 2
 
-echo "$(tput setaf 5)\n9) Prueba con 3 filósofos, con 2 raciones (2). Debe morir uno: ./philo 3 130 100 100 2"
+echo "$(tput setaf 5)\n7) Prueba con 3 filósofos, con 2 raciones (2). Debe morir uno: ./philo 3 130 100 100 2"
 echo "$(tput setaf 8)\c"
 read foo
 ./philo 3 130 100 100 2
 read foo
 
-echo "$(tput setaf 5)\n10) CASO PROPUESTO EN LA CORRECCIÓN: Prueba con 4 filósofos, sin límite de raciones. Debe morir uno: ./philo 4 310 200 100"
+echo "$(tput setaf 5)\n8) Prueba con 3 filósofos, sin límite de raciones (1). Debe morir uno: ./philo 3 130 60 60"
 echo "$(tput setaf 8)\c"
 read foo
-./philo 4 310 200 100
+./philo 3 130 60 60
+read foo
+
+echo "$(tput setaf 5)\n9) Prueba con 3 filósofos, sin límite de raciones (2). Debe morir uno: ./philo 3 130 100 100"
+echo "$(tput setaf 8)\c"
+read foo
+./philo 3 130 100 100
+read foo
+
+echo "$(tput setaf 5)\n9) Prueba con 3 filósofos, con 4 raciones (2). Debe morir uno: ./philo 3 130 100 100 4"
+echo "$(tput setaf 8)\c"
+read foo
+./philo 3 300 100 100 4
+read foo
+
+echo "$(tput setaf 5)\n10) Prueba con 4 filósofos, con 2 raciones (1). Deben sobrevivir: ./philo 4 410 200 200 2"
+echo "$(tput setaf 8)\c"
+read foo
+./philo 4 410 200 200 2
 read foo
 
 echo "$(tput setaf 5)\n11) Prueba con 4 filósofos, con 2 raciones (2). Debe morir uno: ./philo 4 310 200 100 2"
@@ -208,8 +213,8 @@ read foo
 ./philo 4 310 200 100 2
 read foo
 
-echo "$(tput setaf 5)\n12) Prueba con 4 filósofos, con 2 raciones (2). Deben sobrevivir: ./philo 4 410 200 200 2"
+echo "$(tput setaf 5)\n12) CASO PROPUESTO EN LA CORRECCIÓN: Prueba con 4 filósofos, sin límite de raciones. Debe morir uno: ./philo 4 310 200 100"
 echo "$(tput setaf 8)\c"
 read foo
-./philo 4 410 200 200 2
+./philo 4 310 200 100
 read foo

@@ -64,7 +64,6 @@ static int	get_data(char **sliced_data, t_input *input)
 	i = 0;
 	while (sliced_data[i])
 		i++;
-	input->init = time_stm();
 	input->end = 0;
 	input->diners = ft_atoi(sliced_data[0]);
 	input->time_to_die = ft_atoi(sliced_data[1]);

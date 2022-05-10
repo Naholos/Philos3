@@ -35,7 +35,6 @@ typedef struct s_input
 {
 	int				end;
 	int				diners;
-	long			init;
 	long			time_to_die;
 	long			time_to_eat;
 	long			time_to_sleep;

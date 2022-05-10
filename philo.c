@@ -12,10 +12,10 @@
 
 #include "./include/philo.h"
 
-/*void	leaks(void)
+void	leaks(void)
 {
 	system("leaks -q philo");
-}*/
+}
 
 static void	*actions(void *philosophers)
 {
@@ -55,7 +55,7 @@ static void	init_phi(t_input *input, t_philo *phi, int *forks)
 	{
 		phi[i].id = i + 1;
 		phi[i].com = input;
-		phi[i].last_meal = phi[i].com->init;
+		phi[i].last_meal = 0;
 		phi[i].times_must_eat = phi[i].com->rations;
 		phi[i].r_fork = &forks[i];
 		if (i == 0)
